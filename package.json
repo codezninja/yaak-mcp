@@ -1,0 +1,47 @@
+{
+  "name": "@codezninja/yaak-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Yaak built on the Yaak CLI, with environment management",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "yaak",
+    "api-client"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codezninja/yaak-mcp.git"
+  },
+  "homepage": "https://github.com/codezninja/yaak-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/codezninja/yaak-mcp/issues"
+  },
+  "type": "module",
+  "bin": {
+    "yaak-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

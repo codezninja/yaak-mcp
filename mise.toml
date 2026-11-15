@@ -1,0 +1,14 @@
+[tools]
+node = "22"
+
+[tasks."deps"]
+description = "Install npm dependencies"
+run = "npm install"
+
+[tasks."build"]
+description = "Compile TypeScript to dist/"
+run = "npm run build"
+
+[tasks."check"]
+description = "Typecheck and run unit tests"
+run = ["npm run typecheck", "npm test"]
