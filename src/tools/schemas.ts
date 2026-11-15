@@ -1,3 +1,5 @@
+// Adapted from mountain-loop/yaak plugins-external/mcp-server/src.
+// Copyright (c) 2024 Yaak. Licensed under the MIT License.
 import * as z from "zod";
 
 export const workspaceIdSchema = z

@@ -2,6 +2,7 @@
   "name": "@codezninja/yaak-mcp",
   "version": "0.1.0",
   "description": "MCP server for Yaak built on the Yaak CLI, with environment management",
+  "license": "MIT",
   "keywords": [
     "mcp",
     "model-context-protocol",
