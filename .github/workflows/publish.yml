@@ -1,8 +1,10 @@
 name: Publish
 
-# Publishing a GitHub Release whose tag is v<package.json version> publishes to npm.
-# Auth is npm trusted publishing (GitHub OIDC), so there is no NPM_TOKEN secret.
-# Configure the trusted publisher on npmjs.com: repo codezninja/yaak-mcp, workflow publish.yml.
+# Publishing a GitHub Release whose tag is v<package.json version> stages that version on npm.
+# A maintainer then approves it on npmjs.com (or `npm stage approve <id>`) with 2FA.
+# Auth is npm trusted publishing (GitHub OIDC), so there is no NPM_TOKEN secret. The
+# trusted publisher (repo codezninja/yaak-mcp, workflow publish.yml, environment npm)
+# is stage-only, so plain `npm publish` from here is rejected.
 
 on:
   release:
@@ -37,7 +39,7 @@ jobs:
             exit 1
           fi
 
-      # Trusted publishing needs npm 11.5.1 or later; Node 22 ships npm 10.
+      # Staged publishing needs npm 11.15.0 or later; Node 22 ships npm 10.
       - name: Upgrade npm
         run: npm install -g npm@latest
 
@@ -50,12 +52,12 @@ jobs:
       - name: Build
         run: mise run build
 
-      - name: Publish
+      - name: Stage publish
         env:
           PRERELEASE: ${{ github.event.release.prerelease }}
         run: |
           if [ "$PRERELEASE" = "true" ]; then
-            npm publish --tag next
+            npm stage publish --tag next
           else
-            npm publish
+            npm stage publish
           fi

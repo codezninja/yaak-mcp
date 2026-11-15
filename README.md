@@ -48,10 +48,13 @@ To run a local build, point the MCP client at `node <repo>/dist/index.js`.
 
 1. Bump `version` in `package.json` (`npm version patch --no-git-tag-version`), commit and push.
 2. Publish a GitHub Release with tag `v<version>`, e.g. `gh release create v0.1.1 --generate-notes`.
-   Mark it as a pre-release to publish under the `next` dist-tag.
+   Mark it as a pre-release to stage it under the `next` dist-tag.
+3. Approve the staged version on npmjs.com (package settings) or with `npm stage approve <id>`.
+   Approval needs 2FA.
 
-The `Publish` workflow checks the tag matches `package.json`, runs the checks, and publishes with
-npm trusted publishing (OIDC, with provenance). No npm token is stored in the repo.
+The `Publish` workflow checks the tag matches `package.json`, runs the checks, and runs
+`npm stage publish` with npm trusted publishing (OIDC). The trusted publisher is stage-only, so
+nothing goes live without a maintainer's approval, and no npm token is stored in the repo.
 
 ## Tools
 
